@@ -14,7 +14,7 @@ const prodErrorHandler = (err, res) => {
       message: err.message,
     });
   } else {
-    console.log(`ERROR: ${err}`);
+    console.log(`ERROR: ${err.message}`);
 
     res.status(500).json({
       status: 'error',
@@ -25,7 +25,6 @@ const prodErrorHandler = (err, res) => {
 
 const globalErrorHandler = (err, req, res, next) => {
   if (process.env.NODE_ENV === 'development') devErrorHandler(err, res);
-
   if (process.env.NODE_ENV === 'production') prodErrorHandler(err, res);
 };
 

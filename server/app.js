@@ -2,8 +2,10 @@ import express from 'express';
 import morgan from 'morgan';
 
 import { urlsError } from './middlewares/index.js';
-import { globalErrorHandler } from './controllers/errorsControllers.js';
+
 import { usersRouter } from './routes/index.js';
+
+import { globalErrorHandler } from './controllers/errorsControllers.js';
 
 const app = express();
 

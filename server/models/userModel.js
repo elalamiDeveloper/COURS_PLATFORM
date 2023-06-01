@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
+import bcrypt from 'bcrypt';
 
+// SCHEMA
 const userSchema = mongoose.Schema({
   firstName: {
     type: String,
@@ -59,8 +61,31 @@ const userSchema = mongoose.Schema({
     default: new Date(),
     select: false,
   },
+
+  role: {
+    type: String,
+    enum: ['admin', 'user'],
+    default: 'user',
+  },
 });
 
+// MIDDLEWARES
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password')) return next();
+
+  // HASH the password with cost of 12
+  bcrypt.hash(this.password, 12, (err, hash) => {
+    this.password = hash;
+    this.passwordConfirmation = undefined;
+    next();
+  });
+});
+
+// METHODS
+userSchema.methods.correctPassword = async (psw, userPsw) =>
+  await bcrypt.compare(psw, userPsw);
+
+// MODEL
 const User = mongoose.model('User', userSchema);
 
 export default User;
