@@ -14,6 +14,8 @@ html {
 
 body {
   font-family: 'Poppins', sans-serif;
+  color: #f6f6f6;
+  background: #010d17;
 }
 
 ul {
@@ -25,6 +27,7 @@ a:visited {
   display: inline-block;
   text-decoration: none;
   font-family: inherit;
+  color: inherit;
 }
 
 img {
@@ -35,4 +38,10 @@ button {
   cursor: pointer;
   border: none;
   outline: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
 }
