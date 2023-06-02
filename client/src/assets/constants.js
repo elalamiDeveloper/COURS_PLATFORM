@@ -1,3 +1,5 @@
+const apiUrl = 'http://localhost:8000/api/v1';
+
 const colors = {
   principalColor100: '#e6f3fc',
   principalColor200: '#9dcef4',
@@ -14,4 +16,8 @@ const colors = {
   secondaryColor500: '#b3a475',
   secondaryColor600: '#665e43',
   secondaryColor700: '#191711',
+
+  errorColor: '#ff1515',
 };
+
+export { colors, apiUrl };

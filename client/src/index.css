@@ -40,6 +40,12 @@ button {
   outline: none;
 }
 
+input {
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1280px;

@@ -3,6 +3,15 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models/index.js';
 import { AppError } from '../utils/index.js';
 
+const sendTokenToClient = (res, id) => {
+  const token = signToken(id);
+
+  res.status(200).json({
+    status: 'success',
+    token,
+  });
+};
+
 const signToken = (id) => {
   const token = jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -34,7 +43,7 @@ const login = async (req, res, next) => {
 
     // Check email and password exists
     if (!email || !password)
-      throw new AppError('Please provide email and password', 400);
+      throw new AppError('Adresse e-mail ou mot de passe non valides.', 400);
 
     // Check if user already exist & password correct
     const user = await User.findOne({ email }).select('password');
@@ -47,11 +56,7 @@ const login = async (req, res, next) => {
     }
 
     // everything is ok, send token to client
-    const token = signToken(user._id);
-    res.status(200).json({
-      status: 'success',
-      token,
-    });
+    sendTokenToClient(res, user._id);
   } catch (err) {
     next(err);
   }
