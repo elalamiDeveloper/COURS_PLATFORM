@@ -7,7 +7,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login(state, action) {
-      localStorage.setItem('jwt', JSON.stringify(action.payload));
+      localStorage.setItem('jwt', action.payload);
       state.isAuth = true;
       state.jwt = action.payload;
     },

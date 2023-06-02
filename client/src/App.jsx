@@ -12,6 +12,7 @@ const App = () => {
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
+
     if (jwt) dispatch(authActions.login(jwt));
   }, []);
 

@@ -1,3 +1,4 @@
+import { query } from 'express';
 import User from '../models/userModel.js';
 
 import APIFeatures from '../utils/APIFeatures.js';
@@ -38,4 +39,22 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
-export { createUser, getAllUsers };
+const getMy = async (req, res, next) => {
+  try {
+    const fields = req.query.fields.split(',');
+    const user = {};
+
+    fields.forEach((element) => {
+      user[element] = req.user[element];
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: { user },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export { createUser, getAllUsers, getMy };

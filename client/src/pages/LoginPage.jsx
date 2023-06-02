@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -61,10 +62,17 @@ const LoginPageContainer = styled.main`
 `;
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isAuth = useSelector(({ auth }) => auth.isAuth);
   const [inuputs, setInputs] = useState({ email: '', password: '' });
   const [inputsError, setInputsError] = useState({ valid: false, message: '' });
   const { email, password } = inuputs;
+
+  useEffect(() => {
+    if (!isAuth) return;
+    navigate('/cours');
+  }, []);
 
   // Handlers functions
   const inputChangeHandler = (e) =>
@@ -78,8 +86,6 @@ const LoginPage = () => {
         password,
       });
       dispatch(authActions.login(data.token));
-      console.log('test');
-      console.log(data);
     } catch (err) {
       setInputsError((prevVal) => ({
         valid: true,
