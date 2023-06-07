@@ -42,7 +42,8 @@ button {
   color: inherit;
 }
 
-input {
+input,
+select {
   font-family: inherit;
   border: none;
   outline: none;
@@ -50,6 +51,7 @@ input {
 
 .container {
   margin: 0 auto;
+  padding: 9rem 0;
   max-width: 1280px;
   width: 90%;
 }

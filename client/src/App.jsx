@@ -12,19 +12,20 @@ const App = () => {
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
-
     if (jwt) dispatch(authActions.login(jwt));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isAuth) navigate('/cours');
     if (!isAuth) navigate('/login');
-  }, [isAuth]);
+  }, [isAuth, navigate]);
 
   return (
     <div>
       <Header />
-      <Outlet />
+      <div className="container">
+        <Outlet />
+      </div>
     </div>
   );
 };

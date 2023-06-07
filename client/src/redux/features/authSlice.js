@@ -13,6 +13,7 @@ const authSlice = createSlice({
     },
 
     logout(state) {
+      localStorage.removeItem('jwt');
       state.isAuth = false;
       state.jwt = '';
     },
