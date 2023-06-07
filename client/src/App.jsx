@@ -8,17 +8,17 @@ import { authActions } from './redux/features/authSlice';
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuth = useSelector(({ auth }) => auth.isAuth);
+  const { path } = useSelector(({ auth }) => auth);
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
-    if (jwt) dispatch(authActions.login(jwt));
+    if (!jwt) return;
+    dispatch(authActions.login({ jwt, path: window.location.pathname }));
   }, [dispatch]);
 
   useEffect(() => {
-    if (isAuth) navigate('/cours');
-    if (!isAuth) navigate('/login');
-  }, [isAuth, navigate]);
+    navigate(path);
+  }, [path, navigate]);
 
   return (
     <div>

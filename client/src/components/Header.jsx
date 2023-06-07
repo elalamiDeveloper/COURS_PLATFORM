@@ -53,6 +53,7 @@ const Header = () => {
     photo: '',
   });
   const { firstName, lastName, photo } = userInfo;
+  console.log(jwt);
 
   useEffect(() => {
     if (!isAuth) return;
@@ -72,7 +73,7 @@ const Header = () => {
     };
 
     getData();
-  }, [isAuth]);
+  }, [isAuth, jwt]);
 
   const showProfilNavBarHandler = () =>
     setProfilNavBarShown((prevVal) => setProfilNavBarShown(!prevVal));

@@ -15,7 +15,6 @@ const LoginPageContainer = styled.main`
   justify-content: center;
   align-items: center;
   gap: 5rem;
-  min-height: calc(100vh - 7.6rem);
 
   .text {
     font-size: 5.2rem;
@@ -62,17 +61,10 @@ const LoginPageContainer = styled.main`
 `;
 
 const LoginPage = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isAuth = useSelector(({ auth }) => auth.isAuth);
   const [inuputs, setInputs] = useState({ email: '', password: '' });
   const [inputsError, setInputsError] = useState({ valid: false, message: '' });
   const { email, password } = inuputs;
-
-  useEffect(() => {
-    if (!isAuth) return;
-    navigate('/cours');
-  }, []);
 
   // Handlers functions
   const inputChangeHandler = (e) =>
@@ -85,12 +77,12 @@ const LoginPage = () => {
         email,
         password,
       });
-      dispatch(authActions.login(data.token));
+      dispatch(authActions.login({ jwt: data.token, path: 'cours' }));
     } catch (err) {
-      setInputsError((prevVal) => ({
+      setInputsError({
         valid: true,
         message: err.response.data.message,
-      }));
+      });
     }
   };
 

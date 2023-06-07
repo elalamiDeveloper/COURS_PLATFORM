@@ -51,7 +51,9 @@ const ProfilNavBar = ({ onShowProfilNavBar, className }) => {
     <ProfilNavBarContainer className={className}>
       <ul className="list">
         <li className="item">
-          <NavLink to={'/account'}>Mon Compte</NavLink>
+          <NavLink to={'/account'} onClick={onShowProfilNavBar}>
+            Mon Compte
+          </NavLink>
         </li>
         <li className="item">
           <button onClick={logoutHandler}>Se Déconnecter</button>
