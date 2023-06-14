@@ -1,18 +1,40 @@
-import { Link } from 'react-router-dom';
-import { Player } from 'video-react';
-
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
-const CoursListContainer = styled.ul``;
+import { CourCard } from '.';
+import { apiUrl } from '../assets/constants';
+
+const CoursListContainer = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5rem;
+`;
 
 const CoursList = () => {
-  const testID = 'testID';
+  const [cours, setCours] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const {
+        data: { data },
+      } = await axios.get(
+        `${apiUrl}/formations?fields=_id,image,title,duration,durationValidated,description`
+      );
+
+      setCours(data.formations);
+    };
+
+    getData();
+  }, []);
+
   return (
     <CoursListContainer>
-      <Player
-        playsInline
-        src="https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
-      />
+      {cours.map((cour) => (
+        <CourCard key={cour._id} {...cour} />
+      ))}
     </CoursListContainer>
   );
 };

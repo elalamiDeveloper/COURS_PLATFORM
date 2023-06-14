@@ -4,12 +4,10 @@ import { VideosList } from '.';
 
 const ChaptersListContainer = styled.ul``;
 
-const ChaptersList = ({ chapters }) => {
+const ChaptersList = () => {
   return (
     <ChaptersListContainer>
-      <h4>
-        Chapitre {nbrOfChapter} : {title}
-      </h4>
+      <h4></h4>
       <VideosList />
     </ChaptersListContainer>
   );

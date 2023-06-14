@@ -6,6 +6,7 @@ import CourContent from './CourContent';
 import ChaptersList from './ChaptersList';
 import VideosList from './VideosList';
 import VideoItem from './VideoItem';
+import CourCard from './CourCard';
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   ChaptersList,
   VideosList,
   VideoItem,
+  CourCard,
 };

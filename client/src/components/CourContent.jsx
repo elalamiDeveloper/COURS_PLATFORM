@@ -4,7 +4,7 @@ import { ChaptersList } from '.';
 
 const CourContentContainer = styled.aside``;
 
-const CourContent = ({}) => {
+const CourContent = () => {
   return (
     <CourContentContainer>
       <h3></h3>

@@ -1,4 +1,5 @@
 import Formation from '../models/formationModel.js';
+import APIFeatures from '../utils/APIFeatures.js';
 
 const createFormation = async (req, res, next) => {
   try {
@@ -15,7 +16,12 @@ const createFormation = async (req, res, next) => {
 
 const getAllFormations = async (req, res, next) => {
   try {
-    const formations = await Formation.find().select('-__v');
+    const query = new APIFeatures(Formation.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+    const formations = await query.query;
 
     res.status(200).json({
       status: 'success',
