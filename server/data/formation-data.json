@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Excel Debutant",
+    "image": "https://res.cloudinary.com/df8jkm00a/image/upload/v1686746350/excel8-1080x675_ttdity.jpg",
+    "duration": 35,
+    "durationValidated": 20,
+    "niveau": "Debutant",
+    "langues": "Francais",
+    "description": "Notre cours d'Excel pour débutants est conçu pour vous familiariser avec les bases essentielles de ce puissant logiciel de tableur. Que vous soyez un étudiant, un professionnel ou simplement quelqu'un qui souhaite acquérir des compétences en informatique, ce cours vous fournira les connaissances nécessaires pour commencer à utiliser Excel de manière efficace.",
+    "formateur": "MR Excel",
+    "chapitres": [
+      {
+        "titre": "Chapitre 1",
+        "videos": [
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          },
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          },
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          }
+        ]
+      },
+      {
+        "titre": "test Title Chapitre",
+        "videos": [
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          },
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          },
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          }
+        ]
+      },
+      {
+        "titre": "test Title Chapitre",
+        "videos": [
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          },
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          },
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          }
+        ]
+      },
+      {
+        "titre": "test Title Chapitre",
+        "videos": [
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          },
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          },
+          {
+            "titre": "test Title Video",
+            "link": "https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
+          }
+        ]
+      }
+    ]
+  }
+]

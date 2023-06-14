@@ -78,7 +78,7 @@ const ProfilPage = () => {
       const {
         data: { data },
       } = await axios.get(
-        `${apiUrl}/users/getMy?fields=firstName,lastName,photo,email,entreprise`,
+        `${apiUrl}/users/getMe?fields=firstName,lastName,photo,email,entreprise`,
         {
           headers: {
             Authorization: `Bearer ${jwt}`,
@@ -86,9 +86,7 @@ const ProfilPage = () => {
         }
       );
 
-      console.log(data.user);
       setInputs(data.user);
-      // setUserInfo(data.user);
     };
 
     getData();
@@ -97,9 +95,13 @@ const ProfilPage = () => {
   const changeInputsHandler = (e) =>
     setInputs((prevVal) => ({ ...prevVal, [e.target.name]: e.target.value }));
 
-  const submitInputsHandler = (e) => {
+  const submitInputsHandler = async (e) => {
     e.preventDefault();
-    console.log(inputs);
+    await axios.patch(`${apiUrl}/users/updateMe`, inputs, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
   };
 
   return (

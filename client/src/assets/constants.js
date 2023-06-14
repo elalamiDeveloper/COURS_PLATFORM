@@ -18,6 +18,9 @@ const colors = {
   secondaryColor700: '#191711',
 
   errorColor: '#ff1515',
+  errorColorBg: '#ffe8e8',
+
+  validColor: '#33cc66',
 };
 
 export { colors, apiUrl };

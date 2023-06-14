@@ -46,7 +46,6 @@ const userSchema = mongoose.Schema({
 
   passwordChangedAt: {
     type: Date,
-    default: new Date(),
   },
 
   entreprise: {
@@ -82,6 +81,7 @@ userSchema.pre('save', function (next) {
   bcrypt.hash(this.password, 12, (err, hash) => {
     this.password = hash;
     this.passwordConfirmation = undefined;
+    this.passwordChangedAt = new Date() - 100;
     next();
   });
 });

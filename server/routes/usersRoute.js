@@ -1,17 +1,27 @@
 import express from 'express';
 
-import { signup, login, protect } from '../controllers/authControllers.js';
+import {
+  signup,
+  login,
+  protect,
+  restrictTo,
+  updatePassword,
+} from '../controllers/authControllers.js';
 import {
   getAllUsers,
   createUser,
-  getMy,
+  getMe,
+  updateMe,
 } from '../controllers/usersControllers.js';
 
 const router = express.Router();
 
+router.route('/').get(protect, restrictTo('admin'), getAllUsers);
 router.route('/signup').post(signup);
 router.route('/login').post(login);
-router.route('/getMy').get(protect, getMy);
+router.route('/getMe').get(protect, getMe);
+router.route('/updateMe').patch(protect, updateMe);
+router.route('/updatePassword').post(protect, updatePassword);
 
 // router.route('/').get(getAllUsers).post(createUser);
 

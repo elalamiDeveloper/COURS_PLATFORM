@@ -53,7 +53,6 @@ const Header = () => {
     photo: '',
   });
   const { firstName, lastName, photo } = userInfo;
-  console.log(jwt);
 
   useEffect(() => {
     if (!isAuth) return;
@@ -61,7 +60,7 @@ const Header = () => {
       const {
         data: { data },
       } = await axios.get(
-        `${apiUrl}/users/getMy?fields=firstName,lastName,photo`,
+        `${apiUrl}/users/getMe?fields=firstName,lastName,photo`,
         {
           headers: {
             Authorization: `Bearer ${jwt}`,

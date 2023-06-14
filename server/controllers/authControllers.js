@@ -21,6 +21,18 @@ const signToken = (id) => {
   return token;
 };
 
+const restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError('You do not have permission to perform this action')
+      );
+    }
+
+    next();
+  };
+};
+
 const protect = async (req, res, next) => {
   try {
     // GET token & check it
@@ -106,4 +118,28 @@ const login = async (req, res, next) => {
   }
 };
 
-export { signup, login, protect };
+const updatePassword = async (req, res, next) => {
+  try {
+    // console.log(req.user._id);
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+    const user = await User.findById(req.user._id).select('password');
+
+    if (!(await user.correctPassword(currentPassword, user.password))) {
+      console.log('OK');
+      throw new AppError('Votre mot de passe actuel est erroné', 401);
+    }
+
+    user.password = newPassword;
+    user.passwordConfirmation = confirmPassword;
+    await user.save();
+
+    res.status(200).json({
+      status: 'success',
+      data: { user },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export { signup, login, protect, restrictTo, updatePassword };

@@ -52,6 +52,6 @@ select {
 .container {
   margin: 0 auto;
   padding: 9rem 0;
-  max-width: 1280px;
+  max-width: 128rem;
   width: 90%;
 }

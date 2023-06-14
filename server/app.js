@@ -4,7 +4,7 @@ import cors from 'cors';
 
 import { urlsError } from './middlewares/index.js';
 
-import { usersRouter } from './routes/index.js';
+import { usersRouter, formationsRouter } from './routes/index.js';
 
 import { globalErrorHandler } from './controllers/errorsControllers.js';
 
@@ -17,6 +17,7 @@ app.use(cors());
 
 // ROUTES
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/formations', formationsRouter);
 app.use('*', urlsError);
 
 // ERRORS HANDLING

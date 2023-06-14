@@ -8,6 +8,7 @@ import {
   AccountPage,
   ProfilPage,
   PasswordPage,
+  CourPage,
 } from '../pages';
 
 const router = createBrowserRouter([
@@ -17,7 +18,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: 'login', element: <LoginPage /> },
-      { path: 'cours', element: <CoursPage /> },
+      {
+        path: 'cours',
+        element: <CoursPage />,
+      },
+      {
+        path: 'cours/:id',
+        element: <CourPage />,
+      },
       {
         path: 'account',
         element: <AccountPage />,
@@ -26,7 +34,10 @@ const router = createBrowserRouter([
             path: 'profil',
             element: <ProfilPage />,
           },
-          { path: 'password', element: <PasswordPage /> },
+          {
+            path: 'password',
+            element: <PasswordPage />,
+          },
         ],
       },
     ],
