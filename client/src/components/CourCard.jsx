@@ -46,14 +46,27 @@ const CourCardContainer = styled.li`
     font-size: 1.4rem;
     font-weight: 600;
   }
+
+  .link {
+    padding: 1.5rem 3rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    background: #f6f6f6;
+    color: ${colors.principalColor600};
+    transition: 0.3s;
+
+    &:hover {
+      background: ${colors.principalColor600};
+      color: #f6f6f6;
+    }
+  }
 `;
 
 const CourCard = (props) => {
-  console.log(props);
   const { _id, image, title, duration, durationValidated, description } = props;
   const progression = Number.parseInt((durationValidated * 100) / duration);
-
-  console.log(progression);
 
   return (
     <CourCardContainer>
@@ -70,7 +83,7 @@ const CourCard = (props) => {
       </div>
       <span className="progression-title">{progression}%</span>
       <Link to={_id} className="link">
-        Cours
+        Acceder a la formation
       </Link>
     </CourCardContainer>
   );

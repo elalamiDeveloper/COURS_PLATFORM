@@ -32,4 +32,19 @@ const getAllFormations = async (req, res, next) => {
   }
 };
 
-export { getAllFormations, createFormation };
+const getFormationById = async (req, res, next) => {
+  try {
+    const query = new APIFeatures(Formation.findById(req.params.id), req.query);
+
+    const formation = await query.query;
+
+    res.status(200).json({
+      status: 'success',
+      data: { formation },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export { getAllFormations, createFormation, getFormationById };
