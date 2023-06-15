@@ -1,14 +1,27 @@
+/* eslint-disable react/prop-types */
 import styled from 'styled-components';
 
-import { VideosList } from '.';
+import { ChapterItem } from '.';
 
-const ChaptersListContainer = styled.ul``;
+const ChaptersListContainer = styled.aside`
+  background: #f6f6f6;
+  color: #333;
+  border-radius: 0.5rem;
 
-const ChaptersList = () => {
+  .chapters-list {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const ChaptersList = ({ chapitres }) => {
+  const chaptersListContent = chapitres.map((chapter, i) => (
+    <ChapterItem key={i} nbrOfChapter={i + 1} {...chapter} />
+  ));
+
   return (
     <ChaptersListContainer>
-      <h4></h4>
-      <VideosList />
+      <ul className="chapters-list">{chaptersListContent}</ul>
     </ChaptersListContainer>
   );
 };

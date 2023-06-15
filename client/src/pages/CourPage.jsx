@@ -3,15 +3,25 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 
-import { CourContent } from '../components';
+import { ChaptersList, VideoContent, ProgressionBar } from '../components';
 import { apiUrl } from '../assets/constants';
 
-const CourPageContainer = styled.main``;
+const CourPageContainer = styled.main`
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: auto 1fr;
+  gap: 2.5rem;
+`;
 
 const CourPage = () => {
   const params = useParams();
   const { id } = params;
-  const [formation, setFormation] = useState({});
+  const [formation, setFormation] = useState({
+    chapitres: [],
+  });
+  const { chapitres } = formation;
+
+  // console.log(formation);
 
   useEffect(() => {
     const getData = async () => {
@@ -26,9 +36,10 @@ const CourPage = () => {
   }, [id]);
 
   return (
-    <CourPageContainer className="l">
-      <CourContent />
+    <CourPageContainer>
+      <ProgressionBar />
       <VideoContent />
+      <ChaptersList chapitres={chapitres} />
     </CourPageContainer>
   );
 };
