@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import authReducer from './features/authSlice';
-import formationReducer from './features/formationSlice';
+import videoActivateReducer from './features/videoActivateSlice';
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    formation: formationReducer,
+    videoActivate: videoActivateReducer,
   },
 });
 

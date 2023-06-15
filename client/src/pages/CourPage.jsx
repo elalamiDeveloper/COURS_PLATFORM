@@ -19,9 +19,8 @@ const CourPage = () => {
   const [formation, setFormation] = useState({
     chapitres: [],
   });
-  const { chapitres } = formation;
-
-  // console.log(formation);
+  const { chapitres, title, durationValidated, duration } = formation;
+  const progression = Number.parseInt((durationValidated * 100) / duration);
 
   useEffect(() => {
     const getData = async () => {
@@ -35,9 +34,11 @@ const CourPage = () => {
     getData();
   }, [id]);
 
+  console.log(formation);
+
   return (
     <CourPageContainer>
-      <ProgressionBar />
+      <ProgressionBar progression={progression} title={title} />
       <VideoContent />
       <ChaptersList chapitres={chapitres} />
     </CourPageContainer>

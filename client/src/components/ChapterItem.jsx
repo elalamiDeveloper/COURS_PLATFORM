@@ -12,6 +12,7 @@ const ChapterItemContent = styled.li`
     justify-content: space-between;
     align-items: center;
     border-bottom: 0.3rem solid #333;
+    cursor: pointer;
 
     .title {
       font-size: 1.8rem;
@@ -24,11 +25,12 @@ const ChapterItemContent = styled.li`
       }
     }
 
-    .arrow-btn {
+    .icon {
       font-size: 2.5rem;
       color: inherit;
       font-weight: 700;
       background: transparent;
+      transition: 0.3s;
     }
   }
 `;
@@ -41,13 +43,14 @@ const ChapterItem = ({ nbrOfChapter, titre, videos }) => {
 
   return (
     <ChapterItemContent>
-      <div className="header">
+      <div className="header" onClick={toggleVideosListHandler}>
         <h4 className="title">
           <span>Chapitre {nbrOfChapter}</span>: {titre}
         </h4>
-        <button className="arrow-btn" onClick={toggleVideosListHandler}>
-          <FaArrowDown />
-        </button>
+        <FaArrowDown
+          className="icon"
+          style={{ transform: videoListActive && 'rotate(180deg)' }}
+        ></FaArrowDown>
       </div>
 
       <VideosList videos={videos} className={videoListActive ? 'active' : ''} />

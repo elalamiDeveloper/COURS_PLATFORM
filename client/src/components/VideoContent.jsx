@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Player } from 'video-react';
 
@@ -6,17 +7,15 @@ const VideoContentContainer = styled.section`
 `;
 
 const VideoContent = () => {
-  const playVideoHandler = (e) => {
-    console.log(e.target.duration);
+  const { url } = useSelector(({ videoActivate }) => videoActivate);
+
+  const playVideoHandler = () => {
+    console.log('Video Finished');
   };
 
   return (
     <VideoContentContainer>
-      <Player
-        onPlay={playVideoHandler}
-        playsInline
-        src="https://res.cloudinary.com/df8jkm00a/video/upload/v1686744540/Comment_utiliser_les_chemins_de_votre_syst%C3%A8me_de_fichier_en_Node.js_-_Show_me_Node.js_Ep._14_pukxl3.mp4"
-      />
+      <Player onEnded={playVideoHandler} playsInline src={url} />
     </VideoContentContainer>
   );
 };

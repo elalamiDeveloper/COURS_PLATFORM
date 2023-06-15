@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 import styled from 'styled-components';
+import { colors } from '../assets/constants';
 
 const ProgressionBarContainer = styled.div`
   background: #f6f6f6;
@@ -10,6 +12,7 @@ const ProgressionBarContainer = styled.div`
     font-size: 2.4rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
+    text-align: center;
   }
 
   .progression {
@@ -18,6 +21,11 @@ const ProgressionBarContainer = styled.div`
     overflow: hidden;
     height: 2rem;
     margin-bottom: 1rem;
+
+    .progression-ok {
+      background-color: ${colors.principalColor400};
+      height: 100%;
+    }
   }
 
   .text {
@@ -25,14 +33,17 @@ const ProgressionBarContainer = styled.div`
   }
 `;
 
-const ProgressionBar = () => {
+const ProgressionBar = ({ progression, title }) => {
   return (
     <ProgressionBarContainer>
-      <h3 className="title">Title</h3>
+      <h3 className="title">{title}</h3>
       <div className="progression">
-        <div className="progression-ok"></div>
+        <div
+          className="progression-ok"
+          style={{ width: `${progression}%` }}
+        ></div>
       </div>
-      <span className="text">0% effectuer</span>
+      <span className="text">{progression}% effectuer</span>
     </ProgressionBarContainer>
   );
 };

@@ -21,12 +21,12 @@ const App = () => {
   }, [path, navigate]);
 
   return (
-    <div>
+    <>
       <Header />
       <div className="container">
         <Outlet />
       </div>
-    </div>
+    </>
   );
 };
 
