@@ -23,7 +23,7 @@ const VideoItemContainer = styled.li`
       height: 2.5rem;
       border-radius: 50%;
       border: 0.25rem solid #f6f6f6;
-      outline: ${colors.principalColor400} solid;
+      outline: ${colors.principalColor300} solid;
     }
 
     .text {

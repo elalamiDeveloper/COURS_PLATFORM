@@ -22,7 +22,7 @@ const formationSlice = createSlice({
       state.url = action.payload.url;
     },
 
-    finishedVideoAndSwipToNext(state, action) {},
+    // finishedVideoAndSwipToNext(state, action) {},
   },
 });
 

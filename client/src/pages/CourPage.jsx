@@ -5,7 +5,12 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 import { formationActions } from '../redux/features/formationSlice';
-import { ChaptersList, VideoContent, ProgressionBar } from '../components';
+import {
+  ChaptersList,
+  VideoContent,
+  ProgressionBar,
+  Comments,
+} from '../components';
 import { apiUrl } from '../assets/constants';
 
 const CourPageContainer = styled.main`
@@ -39,6 +44,7 @@ const CourPage = () => {
       <ProgressionBar />
       <VideoContent />
       <ChaptersList />
+      <Comments />
     </CourPageContainer>
   );
 };

@@ -9,6 +9,7 @@ import CourCard from './CourCard';
 import VideoContent from './VideoContent';
 import ProgressionBar from './ProgressionBar';
 import ChapterItem from './ChapterItem';
+import Comments from './Comments';
 
 export {
   Header,
@@ -22,4 +23,5 @@ export {
   VideoContent,
   ProgressionBar,
   ChapterItem,
+  Comments,
 };
