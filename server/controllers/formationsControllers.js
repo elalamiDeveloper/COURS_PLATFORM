@@ -47,4 +47,29 @@ const getFormationById = async (req, res, next) => {
   }
 };
 
-export { getAllFormations, createFormation, getFormationById };
+const updateFormationById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const updatedFields = req.body;
+    const formation = await Formation.findByIdAndUpdate(id, updatedFields, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!formation) throw new AppError('No formation found with that ID', 404);
+
+    res.status(200).json({
+      status: 'success',
+      data: { formation },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export {
+  getAllFormations,
+  createFormation,
+  getFormationById,
+  updateFormationById,
+};

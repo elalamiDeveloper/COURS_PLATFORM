@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 
+import { formationActions } from '../redux/features/formationSlice';
 import { ChaptersList, VideoContent, ProgressionBar } from '../components';
 import { apiUrl } from '../assets/constants';
 
@@ -16,11 +18,7 @@ const CourPageContainer = styled.main`
 const CourPage = () => {
   const params = useParams();
   const { id } = params;
-  const [formation, setFormation] = useState({
-    chapitres: [],
-  });
-  const { chapitres, title, durationValidated, duration } = formation;
-  const progression = Number.parseInt((durationValidated * 100) / duration);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getData = async () => {
@@ -28,19 +26,19 @@ const CourPage = () => {
         data: { data },
       } = await axios.get(`${apiUrl}/formations/${id}`);
 
-      setFormation(data.formation);
+      dispatch(formationActions.initFormation(data.formation));
     };
 
     getData();
-  }, [id]);
+  }, [id, dispatch]);
 
-  console.log(formation);
+  // console.log(formation);
 
   return (
     <CourPageContainer>
-      <ProgressionBar progression={progression} title={title} />
+      <ProgressionBar />
       <VideoContent />
-      <ChaptersList chapitres={chapitres} />
+      <ChaptersList />
     </CourPageContainer>
   );
 };

@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { ChapterItem } from '.';
@@ -14,7 +15,9 @@ const ChaptersListContainer = styled.aside`
   }
 `;
 
-const ChaptersList = ({ chapitres }) => {
+const ChaptersList = () => {
+  const { chapitres } = useSelector(({ formation }) => formation);
+
   const chaptersListContent = chapitres.map((chapter, i) => (
     <ChapterItem key={i} nbrOfChapter={i + 1} {...chapter} />
   ));

@@ -2,7 +2,7 @@
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { videoActivateActions } from '../redux/features/videoActivateSlice';
+import { activateVideoActions } from '../redux/features/activateVideoSlice';
 import { colors } from '../assets/constants';
 
 const VideoItemContainer = styled.li`
@@ -36,7 +36,7 @@ const VideoItem = ({ titre, link, finished }) => {
   const dispatch = useDispatch();
 
   const videoChangeHandler = () =>
-    dispatch(videoActivateActions.playVideo({ url: link }));
+    dispatch(activateVideoActions.playVideo({ url: link }));
 
   return (
     <VideoItemContainer onClick={videoChangeHandler}>

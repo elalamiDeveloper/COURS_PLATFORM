@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { colors } from '../assets/constants';
 
@@ -33,7 +34,12 @@ const ProgressionBarContainer = styled.div`
   }
 `;
 
-const ProgressionBar = ({ progression, title }) => {
+const ProgressionBar = () => {
+  const { duration, durationValidated, title } = useSelector(
+    ({ formation }) => formation
+  );
+  const progression = Number.parseInt((durationValidated * 100) / duration);
+
   return (
     <ProgressionBarContainer>
       <h3 className="title">{title}</h3>
