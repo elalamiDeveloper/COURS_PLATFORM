@@ -7,6 +7,8 @@ const initialState = {
   duration: 1551,
   documents: [],
   videos: [],
+  questions: [],
+  answers: [],
 };
 
 const formationSlice = createSlice({
@@ -20,6 +22,8 @@ const formationSlice = createSlice({
       state.documents = action.payload.documents;
       state.videos = action.payload.videos;
       state.image = action.payload.image;
+      state.questions = action.payload.questions;
+      state.answers = action.payload.answers;
     },
 
     playVideo(state, action) {
