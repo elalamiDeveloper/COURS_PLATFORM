@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import { PrimaryButton } from './UI';
-import { colors } from '../assets/constants';
+import { apiUrl, colors } from '../assets/constants';
 
 const CommentsContainer = styled.section`
   grid-column: span 2;
@@ -33,25 +34,19 @@ const CommentsContainer = styled.section`
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    border-radius: 0.5rem;
 
     li {
       font-size: 1.8rem;
-      color: #333;
-      display: flex;
-      position: relative;
+      color: #f6f6f6;
       padding-left: 2.5rem;
 
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0rem;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1.5rem;
-        height: 1.5rem;
-        border-radius: 50%;
-        background: #333;
-      }
+      padding: 1.5rem 1.5rem 4.5rem;
+      border-radius: 1rem;
+      position: relative;
+      min-width: 25rem;
+      max-width: 50%;
+      word-wrap: break-word;
 
       .val {
         font-weight: 700;
@@ -59,29 +54,71 @@ const CommentsContainer = styled.section`
       }
 
       .date {
+        position: absolute;
+        bottom: 30px;
+        right: 10px;
+        font-size: 1rem;
       }
     }
   }
 `;
 
 const Comments = () => {
-  const [question, setQuestion] = useState('');
-  const [questions, setQuestions] = useState([]);
+  const [questionInput, setQuestionInput] = useState('');
+  const [comments, setComments] = useState([]);
 
-  const changeQuestionHandler = (e) => setQuestion(e.target.value);
+  useEffect(() => {
+    const getData = async () => {
+      const {
+        data: { data },
+      } = await axios.get(`${apiUrl}/comments`);
 
-  const submitCommentsHandler = (e) => {
+      setComments(data.comments);
+      console.log(data);
+    };
+
+    getData();
+  }, []);
+
+  const changeQuestionHandler = (e) => setQuestionInput(e.target.value);
+
+  const submitCommentsHandler = async (e) => {
     e.preventDefault();
-    setQuestions((prevVal) => [
+    await axios.post(`${apiUrl}/comments`, {
+      comment: questionInput,
+      writeBy: 'user',
+    });
+    setComments((prevVal) => [
       ...prevVal,
-      { value: question, createdAt: new Date().toJSON().slice(0, 10) },
+      {
+        comment: questionInput,
+        createdAt: `maintenant`,
+        writeBy: 'user',
+      },
     ]);
+    setQuestionInput('');
   };
 
-  const questionsContent = questions.map((question, i) => (
-    <li key={i}>
-      <span className="val">{question?.value}</span>
-      <span className="date">{question?.createdAt}</span>
+  const userCommentStyle = {
+    clipPath:
+      'polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 89% 100%, 50% 75%, 0% 75%)',
+    background: colors.principalColor400,
+    marginRight: 'auto',
+  };
+  const adminCommentStyle = {
+    clipPath:
+      'polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 33% 100%, 50% 75%, 0% 75%)',
+    background: colors.secondaryColor500,
+    marginLeft: 'auto',
+  };
+
+  const questionsContent = comments.map((comment, i) => (
+    <li
+      key={i}
+      style={comment.writeBy === 'user' ? userCommentStyle : adminCommentStyle}
+    >
+      <span className="val">{comment?.comment}</span>
+      <span className="date">{comment?.createdAt.slice(0, 10)}</span>
     </li>
   ));
 
@@ -94,9 +131,7 @@ const Comments = () => {
       <form onSubmit={submitCommentsHandler}>
         <input
           type="text"
-          name="question"
-          id="question"
-          value={question}
+          value={questionInput}
           onChange={changeQuestionHandler}
         />
         <PrimaryButton type="submit">Envoyer</PrimaryButton>
