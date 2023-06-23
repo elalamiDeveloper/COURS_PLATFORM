@@ -52,7 +52,7 @@ const Header = () => {
     lastName: '',
     photo: '',
   });
-  const { firstName, lastName, photo } = userInfo;
+  const { firstName, lastName, imageURL } = userInfo;
 
   useEffect(() => {
     if (!isAuth) return;
@@ -60,7 +60,7 @@ const Header = () => {
       const {
         data: { data },
       } = await axios.get(
-        `${apiUrl}/users/getMe?fields=firstName,lastName,photo`,
+        `${apiUrl}/users/getMe?fields=firstName,lastName,imageURL`,
         {
           headers: {
             Authorization: `Bearer ${jwt}`,
@@ -86,7 +86,7 @@ const Header = () => {
       <button className="nav-link profil" onClick={showProfilNavBarHandler}>
         <span className="text">{`${firstName[0]}. ${lastName}`}</span>
         <div className="profil-img">
-          <img src={photo} alt="" />
+          <img src={imageURL} alt="" />
         </div>
       </button>
     </>

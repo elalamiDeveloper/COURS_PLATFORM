@@ -32,11 +32,11 @@ const VideoItemContainer = styled.li`
   }
 `;
 
-const VideoItem = ({ titre, link, finished }) => {
+const VideoItem = ({ title, url, finished }) => {
   const dispatch = useDispatch();
 
   const videoChangeHandler = () =>
-    dispatch(activateVideoActions.playVideo({ url: link }));
+    dispatch(activateVideoActions.playVideo({ url }));
 
   return (
     <VideoItemContainer onClick={videoChangeHandler}>
@@ -45,7 +45,7 @@ const VideoItem = ({ titre, link, finished }) => {
           className="validation"
           style={{ background: finished && colors.principalColor400 }}
         ></div>
-        <p className="text">{titre}</p>
+        <p className="text">{title}</p>
       </button>
     </VideoItemContainer>
   );

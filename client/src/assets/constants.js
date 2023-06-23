@@ -1,5 +1,5 @@
-// const apiUrl = 'http://localhost:8000/api/v1';
-const apiUrl = 'https://cours-platform.onrender.com/api/v1';
+const apiUrl = 'http://localhost:8000/api/v1';
+// const apiUrl = 'https://cours-platform.onrender.com/api/v1';
 
 const colors = {
   principalColor100: '#e6f3fc',

@@ -25,20 +25,10 @@ const prodErrorHandler = (err, res) => {
   }
 };
 
-const validationErrorHandler = (err, res) => {
-  const errors = Object.values(err.errors).map((el) => el.message);
-  const message = `Invalid input data => ${errors.join(', ')}`;
-
-  return new AppError(message, 400);
-};
-
 const globalErrorHandler = (err, req, res, next) => {
   if (process.env.NODE_ENV === 'development') devErrorHandler(err, res);
   if (process.env.NODE_ENV === 'production') {
     let error;
-    if (err.name === 'ValidationError') {
-      error = validationErrorHandler(err, res);
-    }
 
     console.log(error.message);
     prodErrorHandler(error, res);

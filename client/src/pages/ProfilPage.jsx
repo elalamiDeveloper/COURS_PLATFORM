@@ -67,10 +67,10 @@ const ProfilPage = () => {
     email: '',
     firstName: '',
     lastName: '',
-    entreprise: '',
-    photo: '',
+    society: '',
+    imageURL: '',
   });
-  const { email, firstName, lastName, entreprise, photo } = inputs;
+  const { email, firstName, lastName, society, imageURL } = inputs;
 
   useEffect(() => {
     if (!isAuth) return;
@@ -78,7 +78,7 @@ const ProfilPage = () => {
       const {
         data: { data },
       } = await axios.get(
-        `${apiUrl}/users/getMe?fields=firstName,lastName,photo,email,entreprise`,
+        `${apiUrl}/users/getMe?fields=firstName,lastName,imageURL,email,society`,
         {
           headers: {
             Authorization: `Bearer ${jwt}`,
@@ -110,7 +110,7 @@ const ProfilPage = () => {
 
       <div className="img-container">
         <div className="img">
-          <img src={photo} alt="photo de profil" />
+          <img src={imageURL} alt="photo de profil" />
         </div>
         <p className="text">TÉLÉCHARGER UNE NOUVELLE IMAGE</p>
       </div>
@@ -150,12 +150,12 @@ const ProfilPage = () => {
         </div>
 
         <div className="item long">
-          <label htmlFor="entreprise">Entreprise</label>
+          <label htmlFor="society">Entreprise</label>
           <input
             type="text"
-            id="entreprise"
-            name="entreprise"
-            value={entreprise}
+            id="society"
+            name="society"
+            value={society}
             onChange={changeInputsHandler}
           />
         </div>

@@ -22,42 +22,43 @@ const formationSchema = mongoose.Schema({
     required: [true, 'formation must have a duration'],
   },
 
-  durationValidated: {
-    type: Number,
-    default: 10,
-  },
-
-  niveau: {
-    type: String,
-    trim: true,
-    default: 'Debutant',
-  },
-
-  language: {
-    type: String,
-    default: 'Français',
-  },
-
-  description: {
-    type: String,
-    required: [true, 'formation must have a description'],
-    trim: true,
-  },
-
-  formateur: {
-    type: String,
-    default: '',
-  },
-
   createdAt: {
     type: Date,
     default: new Date(),
     select: false,
   },
 
-  chapitres: {
+  chapters: {
     type: Array,
   },
+
+  documents: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Document',
+    },
+  ],
+
+  videos: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Video',
+    },
+  ],
+});
+
+formationSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'documents',
+    select: '-__v',
+  });
+
+  this.populate({
+    path: 'videos',
+    select: '-__v',
+  });
+
+  next();
 });
 
 // MODEL

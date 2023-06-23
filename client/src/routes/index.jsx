@@ -9,6 +9,7 @@ import {
   ProfilPage,
   PasswordPage,
   CourPage,
+  DocumentsPage,
 } from '../pages';
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           {
             path: 'password',
             element: <PasswordPage />,
+          },
+          {
+            path: 'documents',
+            element: <DocumentsPage />,
           },
         ],
       },

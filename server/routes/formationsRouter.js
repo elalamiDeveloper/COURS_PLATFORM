@@ -10,6 +10,7 @@ import {
 const router = express.Router();
 
 router.route('/').get(getAllFormations).post(createFormation);
+
 router.route('/:id').get(getFormationById).patch(updateFormationById);
 
 export { router as formationsRouter };

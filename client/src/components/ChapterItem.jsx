@@ -35,7 +35,7 @@ const ChapterItemContent = styled.li`
   }
 `;
 
-const ChapterItem = ({ nbrOfChapter, titre, videos }) => {
+const ChapterItem = ({ nbrOfChapter, chapter }) => {
   const [videoListActive, setVideoListActive] = useState(false);
 
   const toggleVideosListHandler = () =>
@@ -45,7 +45,7 @@ const ChapterItem = ({ nbrOfChapter, titre, videos }) => {
     <ChapterItemContent>
       <div className="header" onClick={toggleVideosListHandler}>
         <h4 className="title">
-          <span>Chapitre {nbrOfChapter}</span>: {titre}
+          <span>Chapitre {nbrOfChapter}</span>: {chapter}
         </h4>
         <FaArrowDown
           className="icon"
@@ -53,7 +53,7 @@ const ChapterItem = ({ nbrOfChapter, titre, videos }) => {
         ></FaArrowDown>
       </div>
 
-      <VideosList videos={videos} className={videoListActive ? 'active' : ''} />
+      <VideosList videos className={videoListActive ? 'active' : ''} />
     </ChapterItemContent>
   );
 };

@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 
 import { VideoItem } from '.';
+import { useSelector } from 'react-redux';
 
 const VideosListContainer = styled.ul`
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
@@ -14,8 +15,10 @@ const VideosListContainer = styled.ul`
   }
 `;
 
-const VideosList = ({ videos, className }) => {
-  const videosContent = videos.map((video, i) => (
+const VideosList = ({ className }) => {
+  const { videos, documents } = useSelector(({ formation }) => formation);
+
+  const videosContent = [...documents, ...videos].map((video, i) => (
     <VideoItem key={i} {...video} />
   ));
 

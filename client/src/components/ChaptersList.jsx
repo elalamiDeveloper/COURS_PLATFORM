@@ -16,10 +16,10 @@ const ChaptersListContainer = styled.aside`
 `;
 
 const ChaptersList = () => {
-  const { chapitres } = useSelector(({ formation }) => formation);
+  const { chapters } = useSelector(({ formation }) => formation);
 
-  const chaptersListContent = chapitres.map((chapter, i) => (
-    <ChapterItem key={i} nbrOfChapter={i + 1} {...chapter} />
+  const chaptersListContent = chapters.map((chapter, i) => (
+    <ChapterItem key={i} nbrOfChapter={i + 1} chapter={chapter} />
   ));
 
   return (

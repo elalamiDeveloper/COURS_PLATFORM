@@ -58,6 +58,15 @@ const SideBar = () => {
             Mot de passe
           </NavLink>
         </li>
+
+        <li className="item">
+          <NavLink
+            to={'documents'}
+            className={({ isActive }) => (isActive ? 'active link' : 'link')}
+          >
+            Documents
+          </NavLink>
+        </li>
       </ul>
     </SideBarContainer>
   );

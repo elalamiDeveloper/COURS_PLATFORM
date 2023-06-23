@@ -65,7 +65,8 @@ const CourCardContainer = styled.li`
 `;
 
 const CourCard = (props) => {
-  const { _id, image, title, duration, durationValidated, description } = props;
+  console.log(props);
+  const { _id, image, title, duration, durationValidated } = props;
   const progression = Number.parseInt((durationValidated * 100) / duration);
 
   return (
@@ -74,7 +75,6 @@ const CourCard = (props) => {
         <img src={image} alt="cour img" />
       </div>
       <h3 className="title">{title}</h3>
-      <p className="text">{description.slice(0, 500)}...</p>
       <div className="progression">
         <div
           className="progression-ok"

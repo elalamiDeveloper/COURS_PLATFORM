@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  chapitres: [],
-  title: 'title',
-  durationValidated: 0,
+  chapters: [],
+  title: '',
+  image: '',
   duration: 1551,
+  documents: [],
+  videos: [],
 };
 
 const formationSlice = createSlice({
@@ -12,10 +14,12 @@ const formationSlice = createSlice({
   initialState,
   reducers: {
     initFormation(state, action) {
-      state.chapitres = [...action.payload.chapitres];
+      state.chapters = [...action.payload.chapters];
       state.title = action.payload.title;
       state.duration = action.payload.duration;
-      state.durationValidated = action.payload.durationValidated;
+      state.documents = action.payload.documents;
+      state.videos = action.payload.videos;
+      state.image = action.payload.image;
     },
 
     playVideo(state, action) {

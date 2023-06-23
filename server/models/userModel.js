@@ -16,6 +16,26 @@ const userSchema = mongoose.Schema({
     trim: true,
   },
 
+  role: {
+    type: String,
+    required: [true, 'user must have a role'],
+    trim: true,
+    enum: ['admin', 'user'],
+    default: 'user',
+  },
+
+  imageURL: {
+    type: String,
+    default:
+      'https://res.cloudinary.com/df8jkm00a/image/upload/v1685548348/avatar_nornoj.png',
+  },
+
+  society: {
+    type: String,
+    trim: true,
+    default: '',
+  },
+
   email: {
     type: String,
     required: [true, 'user must have an email'],
@@ -26,7 +46,6 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     required: [true, 'user must have a password'],
-    trim: true,
     minLength: 8,
     select: false,
   },
@@ -34,7 +53,6 @@ const userSchema = mongoose.Schema({
   passwordConfirmation: {
     type: String,
     required: [true, 'user must have a password'],
-    trim: true,
     select: false,
     validate: {
       validator: function (el) {
@@ -44,33 +62,35 @@ const userSchema = mongoose.Schema({
     },
   },
 
-  passwordChangedAt: {
-    type: Date,
-  },
-
-  entreprise: {
-    type: String,
-    trim: true,
-    default: '',
-  },
-
-  photo: {
-    type: String,
-    default:
-      'https://res.cloudinary.com/df8jkm00a/image/upload/v1685548348/avatar_nornoj.png',
-  },
-
   createdAt: {
     type: Date,
     default: new Date(),
     select: false,
   },
 
-  role: {
-    type: String,
-    enum: ['admin', 'user'],
-    default: 'user',
-  },
+  questions: Array,
+  answers: Array,
+
+  formations: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Formation',
+    },
+  ],
+
+  documents: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Document',
+    },
+  ],
+
+  videoValidate: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Video',
+    },
+  ],
 });
 
 // MIDDLEWARES
@@ -89,15 +109,6 @@ userSchema.pre('save', function (next) {
 // METHODS
 userSchema.methods.correctPassword = async (psw, userPsw) =>
   await bcrypt.compare(psw, userPsw);
-
-userSchema.methods.changerPasswordAfterToken = function (JWTTimestamp) {
-  const passwordChangeTimestamp = parseInt(
-    this.passwordChangedAt.getTime() / 1000,
-    10
-  );
-
-  return JWTTimestamp < passwordChangeTimestamp;
-};
 
 // MODEL
 const User = mongoose.model('User', userSchema);

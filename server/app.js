@@ -8,6 +8,8 @@ import {
   usersRouter,
   formationsRouter,
   commentsRouter,
+  videosRouter,
+  documentsRouter,
 } from './routes/index.js';
 
 import { globalErrorHandler } from './controllers/errorsControllers.js';
@@ -22,6 +24,8 @@ app.use(cors());
 // ROUTES
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/formations', formationsRouter);
+app.use('/api/v1/videos', videosRouter);
+app.use('/api/v1/documents', documentsRouter);
 app.use('/api/v1/comments', commentsRouter);
 app.use('*', urlsError);
 

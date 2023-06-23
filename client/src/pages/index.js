@@ -5,6 +5,7 @@ import AccountPage from './AccountPage';
 import ProfilPage from './ProfilPage';
 import PasswordPage from './PasswordPage';
 import CourPage from './CourPage';
+import DocumentsPage from './DocumentsPage';
 
 export {
   ErrorPage,
@@ -14,4 +15,5 @@ export {
   ProfilPage,
   PasswordPage,
   CourPage,
+  DocumentsPage,
 };

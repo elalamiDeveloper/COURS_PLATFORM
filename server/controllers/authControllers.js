@@ -4,6 +4,14 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models/index.js';
 import { AppError } from '../utils/index.js';
 
+const signToken = (id) => {
+  const token = jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN * 24 * 60 * 60,
+  });
+
+  return token;
+};
+
 const sendTokenToClient = (res, id) => {
   const token = signToken(id);
 
@@ -11,14 +19,6 @@ const sendTokenToClient = (res, id) => {
     status: 'success',
     token,
   });
-};
-
-const signToken = (id) => {
-  const token = jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN * 24 * 60 * 60,
-  });
-
-  return token;
 };
 
 const restrictTo = (...roles) => {
@@ -63,11 +63,6 @@ const protect = async (req, res, next) => {
       );
     }
 
-    // Check if user changed password after the token was issued
-    // if (currentUser.changerPasswordAfterToken(decoded.iat)) {
-    //   throw new AppError('User recently changed password! Please log in again');
-    // }
-
     // All is OK
     req.user = currentUser;
     next();
@@ -79,15 +74,9 @@ const protect = async (req, res, next) => {
 const signup = async (req, res, next) => {
   try {
     const newUser = await User.create(req.body);
-    const token = signToken(newUser._id);
+    // const token = signToken(newUser._id);
 
-    res.status(201).json({
-      status: 'success',
-      token,
-      data: {
-        user: newUser,
-      },
-    });
+    sendTokenToClient(res, newUser._id);
   } catch (err) {
     next(err);
   }
@@ -107,7 +96,7 @@ const login = async (req, res, next) => {
       ? await user.correctPassword(password, user.password)
       : false;
 
-    if (!user || !correct) {
+    if (!correct) {
       throw new AppError('Incorrect email or password', 401);
     }
 

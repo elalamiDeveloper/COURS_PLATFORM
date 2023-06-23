@@ -1,29 +1,5 @@
-import { query } from 'express';
 import User from '../models/userModel.js';
-
 import APIFeatures from '../utils/APIFeatures.js';
-
-const filterObj = (obj, ...allowedFields) => {
-  const newObj = {};
-  Object.keys(obj).forEach((el) => {
-    if (allowedFields.includes(el)) newObj[el] = obj[el];
-  });
-  return newObj;
-};
-
-const createUser = async (req, res, next) => {
-  try {
-    const newUser = await User.create(req.body);
-
-    res.status(201).json({
-      status: 'success',
-
-      data: { user: newUser },
-    });
-  } catch (err) {
-    next(err);
-  }
-};
 
 const getAllUsers = async (req, res, next) => {
   try {
@@ -49,12 +25,16 @@ const getAllUsers = async (req, res, next) => {
 
 const getMe = async (req, res, next) => {
   try {
-    const fields = req.query.fields.split(',');
-    const user = {};
+    const fields = req.query.fields?.split(',');
+    let user = {};
 
-    fields.forEach((element) => {
-      user[element] = req.user[element];
-    });
+    if (fields) {
+      fields.forEach((element) => {
+        user[element] = req.user[element];
+      });
+    } else {
+      user = req.user;
+    }
 
     res.status(200).json({
       status: 'success',
@@ -73,16 +53,7 @@ const updateMe = async (req, res, next) => {
       );
     }
 
-    const filtredBody = filterObj(
-      req.body,
-      'email',
-      'firstName',
-      'lastName',
-      'entreprise',
-      'photo'
-    );
-
-    const updatedUser = await User.findByIdAndUpdate(req.user.id, filtredBody, {
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {
       new: true,
       runValidators: true,
     });
@@ -90,7 +61,7 @@ const updateMe = async (req, res, next) => {
     res.status(200).json({
       status: 'success',
       data: {
-        user: filtredBody,
+        user: updatedUser,
       },
     });
   } catch (err) {
@@ -98,4 +69,4 @@ const updateMe = async (req, res, next) => {
   }
 };
 
-export { createUser, getAllUsers, getMe, updateMe };
+export { getAllUsers, getMe, updateMe };
